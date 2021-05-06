@@ -4,11 +4,10 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         String message = " ";
-
         Scanner scanner = new Scanner(System.in);
-        CalculadorDeSecuencia calculador = new CalculadorDeSecuencia();
 
         while (!message.equals("1")) {
+            CalculadorDeSecuencia calculador = new CalculadorDeSecuencia();
             System.out.print("Igrese el mensaje o 1 para salir: ");
             message = scanner.nextLine();
 
