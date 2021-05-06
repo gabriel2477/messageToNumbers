@@ -5,12 +5,16 @@ public class App {
         
 
         Scanner scanner = new Scanner(System.in);
+        CalculadorDeSecuencia calculador = new CalculadorDeSecuencia();
 
-        System.out.println("Igrese el mensaje: ");
+        System.out.print("Igrese el mensaje: ");
         String message = scanner.nextLine();
 
-        transformarANumeros(message);
+        String resultado = calculador.calcular(message);
         System.out.println("El mensaje ingresado es: \""+ message+"\"");
+        System.out.println("Secuencia de Numeros: " + resultado);
+
+        scanner.close();
     }
     
 }

@@ -20,7 +20,6 @@ public class CalculadorDeSecuencia{
         teclas.put("7", "PQRS");
         teclas.put("8", "TUV");
         teclas.put("9", "WXYZ");
-
     }
 
     public String calcular(String string){
@@ -32,38 +31,29 @@ public class CalculadorDeSecuencia{
 
         for(int x=0 ; x<caracteres.length; x++ ){
             for (Map.Entry<String, String> entry : teclas.entrySet()){
-                System.out.println(caracteres[x]);
+
                 if (entry.getValue().contains(String.valueOf(caracteres[x]))){
                     
                     String value = entry.getValue();
                     posicion = value.indexOf(caracteres[x]);
 
-
                     if(teclaAnterior == entry.getKey()){
                         keys.add(" ");
                     }
-
 
                     for(int nn=0; nn<=posicion; nn++){
                         keys.add(entry.getKey());
                     }
                     
-                    
                     teclaAnterior = entry.getKey();
-                    System.out.println(teclaAnterior);
                     break;
                 }
-                
-                
             }
-            
-
         }
         
         for(String numero : keys){
             secuenciaDenumeros += numero;
         }
-        System.out.println(secuenciaDenumeros);
         return secuenciaDenumeros;
     }
 }
