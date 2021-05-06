@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CalculadorDeSecuencia{
@@ -20,19 +18,19 @@ public class CalculadorDeSecuencia{
         teclas.put("9", "WXYZ");
     }
 
-    public String calcular(String string){
-        char[] caracteres = string.toUpperCase().toCharArray();
+    public String calcular(String mensaje){
+        char[] caracteresDelMensaje = mensaje.toUpperCase().toCharArray();
         int posicionDelCaracter = 0;
         StringBuilder secuenciaDeNumeros = new StringBuilder();
         String teclaAnterior = "";
 
-        for(int x=0 ; x<caracteres.length; x++ ){
+        for(int x=0 ; x<caracteresDelMensaje.length; x++ ){
             for (Map.Entry<String, String> entry : teclas.entrySet()){
 
-                if (entry.getValue().contains(String.valueOf(caracteres[x]))){
+                if (entry.getValue().contains(String.valueOf(caracteresDelMensaje[x]))){
                     
                     String value = entry.getValue();
-                    posicionDelCaracter = value.indexOf(caracteres[x]);
+                    posicionDelCaracter = value.indexOf(caracteresDelMensaje[x]);
 
                     if(teclaAnterior == entry.getKey()){
                         secuenciaDeNumeros.append(" ");
