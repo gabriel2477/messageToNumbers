@@ -1,28 +1,14 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 
 public class escenariosTest {
-    public static Map<String, String> teclas;
-    static{
-        teclas = new HashMap<>();
-        teclas.put("0", " ");
-        teclas.put("1","");
-        teclas.put("2", "ABC");
-        teclas.put("3", "DEF");
-        teclas.put("4", "GHI");
-        teclas.put("5", "JKL");
-        teclas.put("6", "MNO");
-        teclas.put("7", "PQRS");
-        teclas.put("8", "TUV");
-        teclas.put("9", "WXYZ");
-
-    }
+    CalculadorDeSecuencia calculador = new CalculadorDeSecuencia();
+    Map<String,String> teclas = CalculadorDeSecuencia.teclas;
     @Test
     public void cuandoEscriboLaLetraAEsperoQueMeRetorne2(){
         String expectedResponse = "2";
@@ -148,7 +134,6 @@ public class escenariosTest {
             
 
         }
-        
         
         for(String numero : keys){
             secuenciaDenumeros += numero;
