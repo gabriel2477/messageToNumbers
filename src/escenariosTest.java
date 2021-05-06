@@ -7,6 +7,7 @@ import org.junit.Test;
 public class escenariosTest {
     CalculadorDeSecuencia calculador = new CalculadorDeSecuencia();
     Map<String,String> teclas = CalculadorDeSecuencia.teclas;
+    
     @Test
     public void cuandoEscriboLaLetraAEsperoQueMeRetorne2(){
         String expectedResponse = "2";

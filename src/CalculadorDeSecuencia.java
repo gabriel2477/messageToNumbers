@@ -2,7 +2,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CalculadorDeSecuencia{
-
+    
+    
     public static Map<String, String> teclas;
     static{
         teclas = new HashMap<>();
@@ -20,17 +21,21 @@ public class CalculadorDeSecuencia{
 
     public String calcular(String mensaje){
         char[] caracteresDelMensaje = mensaje.toUpperCase().toCharArray();
-        int posicionDelCaracter = 0;
-        StringBuilder secuenciaDeNumeros = new StringBuilder();
-        String teclaAnterior = "";
+        return secuenciaSegunCaracter(caracteresDelMensaje);
+        
+    }
 
+    private String secuenciaSegunCaracter(char[] caracteresDelMensaje) {
+        StringBuilder secuenciaDeNumeros = new StringBuilder();
+        int posicionDelCaracter = 0;
+        String teclaAnterior = "";
+        
         for(int x=0 ; x<caracteresDelMensaje.length; x++ ){
             for (Map.Entry<String, String> entry : teclas.entrySet()){
 
                 if (entry.getValue().contains(String.valueOf(caracteresDelMensaje[x]))){
                     
-                    String value = entry.getValue();
-                    posicionDelCaracter = value.indexOf(caracteresDelMensaje[x]);
+                    posicionDelCaracter = entry.getValue().indexOf(caracteresDelMensaje[x]);
 
                     if(teclaAnterior == entry.getKey()){
                         secuenciaDeNumeros.append(" ");
