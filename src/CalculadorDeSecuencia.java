@@ -1,8 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class CalculadorDeSecuencia{
-    
+    StringBuilder secuenciaDeNumeros = new StringBuilder();
+    int posicionDelCaracter = 0;
+    String teclaAnterior = "";
     
     public static Map<String, String> teclas;
     static{
@@ -21,36 +24,52 @@ public class CalculadorDeSecuencia{
 
     public String calcular(String mensaje){
         char[] caracteresDelMensaje = mensaje.toUpperCase().toCharArray();
-        return secuenciaSegunCaracter(caracteresDelMensaje);
+        return obtenerSecuencia(caracteresDelMensaje);
         
     }
 
-    private String secuenciaSegunCaracter(char[] caracteresDelMensaje) {
-        StringBuilder secuenciaDeNumeros = new StringBuilder();
-        int posicionDelCaracter = 0;
-        String teclaAnterior = "";
-        
+    private String obtenerSecuencia(char[] caracteresDelMensaje) {
         for(int x=0 ; x<caracteresDelMensaje.length; x++ ){
-            for (Map.Entry<String, String> entry : teclas.entrySet()){
-
-                if (entry.getValue().contains(String.valueOf(caracteresDelMensaje[x]))){
-                    
-                    posicionDelCaracter = entry.getValue().indexOf(caracteresDelMensaje[x]);
-
-                    if(teclaAnterior == entry.getKey()){
-                        secuenciaDeNumeros.append(" ");
-                    }
-
-                    for(int nn=0; nn<=posicionDelCaracter; nn++){
-                        secuenciaDeNumeros.append(entry.getKey());
-                    }
-                    
-                    teclaAnterior = entry.getKey();
-                    break;
-                }
-            }
+            obtenerSecuenciaPorCaracter(caracteresDelMensaje[x]);
         }
-
+        
         return secuenciaDeNumeros.toString();
     }
+
+    private void obtenerSecuenciaPorCaracter(char caracter) {
+
+        for (Map.Entry<String, String> entry : teclas.entrySet()){
+
+            if (laTeclaContieneElCaracter(entry.getValue(),caracter)){
+                posicionDelCaracter = entry.getValue().indexOf(caracter);
+                secuenciaDeNumeros.append(teclasSegunPosicion(entry));
+                teclaAnterior = entry.getKey();
+                break;
+            }
+        }
+    }
+
+
+    private boolean laTeclaContieneElCaracter(String tecla, char caracter) {
+        return tecla.contains(String.valueOf(caracter));
+    }
+
+    private String teclasSegunPosicion(Entry<String, String> entry) {
+        StringBuilder teclas = new StringBuilder();
+        if(elCaracterSeEncuentraEnLamismaTecla(entry)){
+            teclas.append(" ");
+        }
+        for(int x=0; x<=posicionDelCaracter; x++){
+            teclas.append(entry.getKey());
+        }
+        return teclas.toString();
+    }
+
+    private boolean elCaracterSeEncuentraEnLamismaTecla(Entry<String, String> entry) {
+        return teclaAnterior == entry.getKey();
+        
+    }
+
+
 }
+
