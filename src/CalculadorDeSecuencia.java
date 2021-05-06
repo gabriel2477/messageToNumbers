@@ -5,8 +5,6 @@ import java.util.Map;
 
 public class CalculadorDeSecuencia{
 
-    public CalculadorDeSecuencia() {
-    }
     public static Map<String, String> teclas;
     static{
         teclas = new HashMap<>();
@@ -24,9 +22,8 @@ public class CalculadorDeSecuencia{
 
     public String calcular(String string){
         char[] caracteres = string.toUpperCase().toCharArray();
-        int posicion = 0;
-        List<String> keys = new ArrayList<>(); 
-        String secuenciaDenumeros= "";
+        int posicionDelCaracter = 0;
+        StringBuilder secuenciaDeNumeros = new StringBuilder();
         String teclaAnterior = "";
 
         for(int x=0 ; x<caracteres.length; x++ ){
@@ -35,14 +32,14 @@ public class CalculadorDeSecuencia{
                 if (entry.getValue().contains(String.valueOf(caracteres[x]))){
                     
                     String value = entry.getValue();
-                    posicion = value.indexOf(caracteres[x]);
+                    posicionDelCaracter = value.indexOf(caracteres[x]);
 
                     if(teclaAnterior == entry.getKey()){
-                        keys.add(" ");
+                        secuenciaDeNumeros.append(" ");
                     }
 
-                    for(int nn=0; nn<=posicion; nn++){
-                        keys.add(entry.getKey());
+                    for(int nn=0; nn<=posicionDelCaracter; nn++){
+                        secuenciaDeNumeros.append(entry.getKey());
                     }
                     
                     teclaAnterior = entry.getKey();
@@ -50,10 +47,7 @@ public class CalculadorDeSecuencia{
                 }
             }
         }
-        
-        for(String numero : keys){
-            secuenciaDenumeros += numero;
-        }
-        return secuenciaDenumeros;
+
+        return secuenciaDeNumeros.toString();
     }
 }
